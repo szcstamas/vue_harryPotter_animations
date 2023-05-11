@@ -134,9 +134,7 @@ export default {
     bottom: 0;
     right: 0;
     border-top-left-radius: 50%;
-    opacity: 0.5;
     overflow: hidden;
-    filter: grayscale(1);
 
     img {
       width: 100%;

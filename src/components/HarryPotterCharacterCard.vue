@@ -1,6 +1,6 @@
 <template>
   <div class="character-image-box">
-    <img :src="characterObject.image" :alt="characterObject.image" />
+    <img :src="characterObject.image" :alt="characterObject.image" @click="showPopUpOnCharacterImage" />
   </div>
   <div class="character-inner-container">
     <div class="flex-space-between width-100">
@@ -15,7 +15,7 @@
     </p>
     <p>
       Date of birth:
-      {{ characterObject.dateOfBirth }}
+      {{ characterObject.dateOfBirth ? characterObject.dateOfBirth : "not known" }}
     </p>
     <p v-if="characterObject.wizard">
       {{ characterObject.gender === "female" ? "She" : "He" }} is a wizard.
@@ -55,6 +55,9 @@ export default {
         params: { id: charId },
       });
     },
+    showPopUpOnCharacterImage() {
+        alert(`Hey, my name is ${this.characterObject.name}!`);
+    }
   },
 };
 </script>
@@ -85,14 +88,28 @@ h4 {
   height: 100px;
   left: 50%;
   top: -40px;
+  border-radius: 50%;
   transform: translateX(-50%);
+  transition: all .5s ease-in-out;
   z-index: 2;
+  cursor: pointer;
+
+  &:hover {
+    transform: translateX(-50%) translateY(-15px) rotate(360deg);
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
+
+    img {
+        filter: grayscale(0);
+    }
+  }
 
   img {
     width: 100%;
     height: 100%;
     border-radius: 50%;
     object-fit: cover;
+    filter: grayscale(1);
+    transition: all .5s ease-in-out;
   }
 }
 </style>
