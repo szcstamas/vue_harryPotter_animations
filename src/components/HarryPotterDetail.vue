@@ -1,51 +1,52 @@
 <template>
-  <div class="character-container" v-if="char">
-    {{ char }}
-    <router-link to="/harry-potter">⬅️ Back to all wizards</router-link>
-    <h4>This is the page of</h4>
-    <div class="flex-space-between character-name-box">
-      <h1 class="character-name">{{ char.name }}</h1>
-      <p class="character-house">{{ char.house }}</p>
-    </div>
-    <i>Played by {{ char.actor }}</i>
-    <ul>
-      <li>
-        {{ characterGender }}
-        {{ char.wizard ? "is a wizard" : "is not a wizard" }}
-      </li>
-      <li>
-        {{ characterGender }}
-        {{ stillAHogwartsStudent }}
-      </li>
-      <li>
-        {{ characterGenderHas }} wand was created from {{ char.wand.wood }} and
-        {{ char.wand.core }}
-      </li>
-      <li>{{ characterGenderHas }} patronus is {{ char.patronus }}</li>
-    </ul>
-    <div class="character-image-box">
-      <img
-        :src="char.image"
-        :alt="char.name + 'is the character on the picture'"
-      />
-    </div>
-  </div>
-  <div v-else>
-    <h1>Page not found (404)</h1>
-    <p>Try a different page</p>
-  </div>
+      <div v-if="char" class="character-container">
+        <router-link to="/harry-potter">⬅️ Back to all wizards</router-link>
+        <h4>This is the page of</h4>
+        <div class="flex-space-between character-name-box">
+          <h1 class="character-name">{{ char.name }}</h1>
+          <p class="character-house">{{ char.house }}</p>
+        </div>
+        <i>Played by {{ char.actor }}</i>
+        <ul>
+          <li>
+            {{ characterGender }}
+            {{ char.wizard ? "is a wizard" : "is not a wizard" }}
+          </li>
+          <li>
+            {{ characterGender }}
+            {{ stillAHogwartsStudent }}
+          </li>
+          <li>
+            {{ characterGenderHas }} wand was created from {{ char.wand.wood }} and
+            {{ char.wand.core }}
+          </li>
+          <li>{{ characterGenderHas }} patronus is {{ char.patronus }}</li>
+        </ul>
+        <div class="character-image-box">
+          <img
+            :src="char.image"
+            :alt="char.name + 'is the character on the picture'"
+          />
+        </div>
+      </div>
+      <!-- FALLBACK -->
+      <HarryPotterDetailFallbackSkeleton v-else />
 </template>
 
 <script>
 import HarryPotterService from "@/services/HarryPotterService.js";
+import HarryPotterDetailFallbackSkeleton from "./HarryPotterDetailFallbackSkeleton.vue";
 
 export default {
+  components: {
+    HarryPotterDetailFallbackSkeleton,
+},
   props: ["id"],
   data() {
     return {
       char: null,
     };
-  },
+  },  
   created() {
     HarryPotterService.getCharacters()
       .then((res) => {

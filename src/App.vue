@@ -33,7 +33,6 @@ body {
 
 a {
   text-decoration: none;
-  color: $color-base-white;
 }
 
 header {
@@ -65,6 +64,7 @@ nav a.router-link-exact-active:hover {
 }
 
 nav a {
+  color: $color-base-white;
   display: inline-block;
   padding: .25rem 2rem;
   border-left: 1px solid var(--color-border);
