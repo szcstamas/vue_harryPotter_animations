@@ -9,7 +9,10 @@
       </h4>
       <span class="character-house">{{ characterObject.house }}</span>
     </div>
-    <p>Ancestry: {{ characterObject.ancestry ? characterObject.ancestry : "not known" }}</p>
+    <p>
+      Ancestry:
+      {{ characterObject.ancestry ? characterObject.ancestry : "not known" }}
+    </p>
     <p>
       Date of birth:
       {{ characterObject.dateOfBirth }}
@@ -23,7 +26,9 @@
         class="color-hair-box"
         :style="{
           backgroundColor:
-            characterObject.hairColour === 'blonde' ? 'yellow' : characterObject.hairColour,
+            characterObject.hairColour === 'blonde'
+              ? 'yellow'
+              : characterObject.hairColour,
         }"
       ></div>
     </div>
@@ -55,7 +60,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/mixins/flexbox.scss';
+@import "../assets/mixins/flexbox.scss";
 .character-inner-container {
   @include flex(space-between, flex-start, column, normal);
   height: 100%;

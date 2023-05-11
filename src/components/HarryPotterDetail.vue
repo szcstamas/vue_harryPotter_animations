@@ -89,6 +89,16 @@ export default {
   overflow: hidden;
   box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
 
+  a {
+    color: #272727;
+    transition: all .1s ease-in-out;
+    display: block;
+
+    &:hover {
+      transform: translateX(-5px);
+    }
+  }
+
   h4 {
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
     font-size: 20px;
