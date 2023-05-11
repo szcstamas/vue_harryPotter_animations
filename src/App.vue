@@ -57,10 +57,12 @@ nav a.router-link-exact-active {
   color: $color-base-green;
   background-color: $color-base-white;
   border-radius: 10px;
+  transition: all .1s ease-in-out;
 }
 
 nav a.router-link-exact-active:hover {
-  background-color: transparent;
+  background-color: $color-base-green-dark;
+  color: $color-base-white;
 }
 
 nav a {
@@ -68,6 +70,11 @@ nav a {
   display: inline-block;
   padding: .25rem 2rem;
   border-left: 1px solid var(--color-border);
+  transition: all .1s ease-in-out;
+
+  &:hover {
+    transform: translateY(-5px);
+  }
 }
 
 nav a:first-of-type {
@@ -86,6 +93,9 @@ main {
   box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
   border-radius: 20px;
   overflow: hidden;
+}
+.width-100 {
+  width: 100%;
 }
 .flex {
   display: flex;

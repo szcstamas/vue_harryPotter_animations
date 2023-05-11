@@ -16,39 +16,45 @@
       </div> -->
 
       <!-- GOOD PRACTICE -- using computed -->
-      <div
-        class="info-container"
-        v-for="(char, index) in computedArrayFromCharacters"
-        :key="char.id"
-      >
-        <div class="character-image-box">
-          <img :src="char.image" alt="" />
+      <div class="grid-container-of-characters">
+        <div
+          class="info-container"
+          v-for="(char, index) in computedArrayFromCharacters"
+          :key="char.id"
+        >
+          <div class="character-image-box">
+            <img :src="char.image" alt="" />
+          </div>
+          <div class="character-inner-container">
+            <div class="flex-space-between width-100">
+              <h4 class="margin-top-2rem margin-bottom-2rem">
+                {{ char.name }}
+              </h4>
+              <span class="character-house">{{ char.house }}</span>
+            </div>
+            <p>Ancestry: {{ char.ancestry ? char.ancestry : "not known" }}</p>
+            <p>
+              Date of birth:
+              {{ char.dateOfBirth }}
+            </p>
+            <p v-if="char.wizard">
+              {{ char.gender === "female" ? "She" : "He" }} is a wizard.
+            </p>
+            <div class="flex-space-between width-100 margin-top-2rem">
+              <p>Color of hair:</p>
+              <div
+                class="color-hair-box"
+                :style="{
+                  backgroundColor:
+                    char.hairColour === 'blonde' ? 'yellow' : char.hairColour,
+                }"
+              ></div>
+            </div>
+            <ButtonGreen @button-click="routeToSpecificCharacter(char.id)">
+              See subpage
+            </ButtonGreen>
+          </div>
         </div>
-        <div class="flex-space-between">
-          <h4 class="margin-top-2rem margin-bottom-2rem">{{ char.name }}</h4>
-          <span class="character-house">{{ char.house }}</span>
-        </div>
-        <p>Ancestry: {{ char.ancestry ? char.ancestry : "not known" }}</p>
-        <p>
-          Date of birth:
-          {{ char.dateOfBirth }}
-        </p>
-        <p v-if="char.wizard">
-          {{ char.gender === "female" ? "She" : "He" }} is a wizard.
-        </p>
-        <div class="flex-space-between margin-top-2rem">
-          <p>Color of hair:</p>
-          <div
-            class="color-hair-box"
-            :style="{
-              backgroundColor:
-                char.hairColour === 'blonde' ? 'yellow' : char.hairColour,
-            }"
-          ></div>
-        </div>
-        <ButtonGreen @button-click="routeToSpecificCharacter(char.id)">
-          See subpage
-        </ButtonGreen>
       </div>
     </div>
   </section>
@@ -110,6 +116,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../assets/mixins/grid.scss";
+@import "../assets/mixins/flexbox.scss";
+
 h1 {
   font-size: 36px;
   font-weight: bold;
@@ -118,6 +127,17 @@ h1 {
 
 .characters-container {
   position: relative;
+
+  .grid-container-of-characters {
+    @include gridColumnsResponsive(300px, 1rem, 1rem);
+    margin-top: 2rem;
+
+    .character-inner-container {
+      @include flex(space-between, flex-start, column, normal);
+
+      height: 100%;
+    }
+  }
   .info-container {
     position: relative;
     padding: 2rem;

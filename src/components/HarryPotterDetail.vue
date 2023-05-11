@@ -20,12 +20,12 @@
             {{ characterGenderHas }} wand was created from {{ char.wand.wood }} and
             {{ char.wand.core }}
           </li>
-          <li>{{ characterGenderHas }} patronus is {{ char.patronus }}</li>
+          <li>{{ hasPatronus }}</li>
         </ul>
         <div class="character-image-box">
           <img
             :src="char.image"
-            :alt="char.name + 'is the character on the picture'"
+            :alt="imageAltText"
           />
         </div>
       </div>
@@ -68,6 +68,14 @@ export default {
         ? "is still a student"
         : "is not a student";
     },
+    hasPatronus() {
+      return this.char.patronus != ""
+      ? `${this.characterGenderHas} patronus is a(n) ${this.char.patronus}`
+      : `${this.characterGender} doesn't have a patronus` 
+    },
+    imageAltText() {
+      return `${this.char.name} is the character on the picture`
+    }
   },
 };
 </script>
