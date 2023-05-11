@@ -13,7 +13,9 @@ import { RouterLink, RouterView } from "vue-router";
       </nav>
     </div>
   </header>
-  <RouterView />
+  <main>
+    <RouterView />
+  </main>
 </template>
 
 <style lang="scss">
@@ -70,6 +72,13 @@ nav a {
 
 nav a:first-of-type {
   border: 0;
+}
+
+main {
+  width: 100%;
+  max-width: 1400px;
+  padding: 4rem 2rem;
+  margin: auto;
 }
 
 .container {
