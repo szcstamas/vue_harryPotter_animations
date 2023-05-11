@@ -1,0 +1,6 @@
+@mixin gridColumnsResponsive($cellMinWidth, $gridGap, $rowGap, $columnGap) {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax($cellMinWidth, 1fr));
+    row-gap: $rowGap;
+    column-gap: $columnGap;
+}

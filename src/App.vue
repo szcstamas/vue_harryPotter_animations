@@ -16,7 +16,9 @@ import { RouterLink, RouterView } from "vue-router";
   <RouterView />
 </template>
 
-<style>
+<style lang="scss">
+@import './assets/variables/colors.scss';
+
 * {
   margin: 0;
   padding: 0;
@@ -29,12 +31,12 @@ body {
 
 a {
   text-decoration: none;
-  color: green;
+  color: $color-base-white;
 }
 
 header {
   line-height: 1.5;
-  max-height: 100vh;
+  background-color: $color-base-green;
 }
 
 .logo {
@@ -46,11 +48,14 @@ nav {
   width: 100%;
   font-size: 16px;
   text-align: center;
-  margin-top: 2rem;
+  padding: 2rem 0;
 }
 
 nav a.router-link-exact-active {
-  color: var(--color-text);
+  font-weight: bold;
+  color: $color-base-green;
+  background-color: $color-base-white;
+  border-radius: 10px;
 }
 
 nav a.router-link-exact-active:hover {
@@ -59,7 +64,7 @@ nav a.router-link-exact-active:hover {
 
 nav a {
   display: inline-block;
-  padding: 0 1rem;
+  padding: .25rem 2rem;
   border-left: 1px solid var(--color-border);
 }
 
