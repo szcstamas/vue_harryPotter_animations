@@ -17,7 +17,6 @@ export default {
   padding: 1rem 2rem;
   background: green;
   color: #fff;
-  margin-top: 2rem;
   border-radius: 10px;
   border: none;
   outline: none;

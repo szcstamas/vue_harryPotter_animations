@@ -17,11 +17,15 @@
 
       <!-- GOOD PRACTICE -- using computed -->
       <div class="character-search-container">
-        <input
-          type="text"
-          placeholder="Search for your wizard..."
-          v-model="searchInputCharacters"
-        />
+        <div class="character-search-input-container">
+          <input
+            type="text"
+            placeholder="Search for your wizard..."
+            v-model="searchInputCharacters"
+          />
+          <ButtonGreen @button-click="clearSearchInputValue">X</ButtonGreen>
+        </div>
+        <p>{{ searchedArrayLengthIfSearchBegan }}</p>
       </div>
       <div class="grid-container-of-characters">
         <HarryPotterCharacterCardsList
@@ -66,6 +70,9 @@ export default {
 
       return `${year}.${month}.${day}.`;
     },
+    clearSearchInputValue() {
+     this.searchInputCharacters == "" ? alert("The searchbar is already empty!") : this.searchInputCharacters = "";
+    }
   },
   computed: {
     arrayFromCharactersWithChangedDateFormat() {
@@ -92,6 +99,13 @@ export default {
         ? this.searchedArrayFromCharacters
         : this.arrayFromCharactersWithChangedDateFormat;
     },
+    searchedArrayLengthIfSearchBegan() {
+      if (this.searchInputCharacters != "") {
+        return `${this.searchedArrayFromCharacters.length} results found`;
+      } else {
+        return "Your results will be displayed here.";
+      }
+    },
   },
 };
 </script>
@@ -110,22 +124,33 @@ h1 {
   position: relative;
 
   .character-search-container {
-    @include flex(center, center, column, normal);
+    @include flex(center, center, column, 2rem);
     margin-top: 4rem;
 
-    input {
-      font-family: inherit;
-      font-size: 1rem;
+    .character-search-input-container {
+      @include flex(center, center, row, normal);
       width: 100%;
-      appearance: none;
-      outline: 0;
-      border: none;
-      padding: 1.25rem 2rem;
-      border-radius: 10px;
-      box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.08);
 
-      &::placeholder {
+      button {
+        width: 10%;
+        border-radius: 0px 10px 10px 0px;
+        font-weight: bold;
+      }
+
+      input {
         font-family: inherit;
+        font-size: 1rem;
+        width: 90%;
+        appearance: none;
+        outline: 0;
+        border: none;
+        padding: 1rem 2rem;
+        border-radius: 10px 0px 0px 10px;
+        box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.08);
+
+        &::placeholder {
+          font-family: inherit;
+        }
       }
     }
   }
