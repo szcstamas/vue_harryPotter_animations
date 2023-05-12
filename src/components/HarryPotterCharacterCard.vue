@@ -1,6 +1,10 @@
 <template>
   <div class="character-image-box">
-    <img :src="characterObject.image" :alt="characterObject.image" @click="showPopUpOnCharacterImage" />
+    <img
+      :src="characterObject.image"
+      :alt="characterObject.image"
+      @click="showPopUpOnCharacterImage"
+    />
   </div>
   <div class="character-inner-container">
     <div class="flex-space-between width-100">
@@ -11,24 +15,19 @@
     </div>
     <p>
       Ancestry:
-      {{ characterObject.ancestry ? characterObject.ancestry : "not known" }}
+      {{ isAncestryKnown }}
     </p>
     <p>
       Date of birth:
-      {{ characterObject.dateOfBirth ? characterObject.dateOfBirth : "not known" }}
+      {{ isDateOfBirthKnown }}
     </p>
-    <p v-if="characterObject.wizard">
-      {{ characterObject.gender === "female" ? "She" : "He" }} is a wizard.
-    </p>
+    <p v-if="characterObject.wizard">{{ characterGender }} is a wizard.</p>
     <div class="flex-space-between width-100 margin-top-2rem">
       <p>Color of hair:</p>
       <div
         class="color-hair-box"
         :style="{
-          backgroundColor:
-            characterObject.hairColour === 'blonde'
-              ? 'yellow'
-              : characterObject.hairColour,
+          backgroundColor: characterHairColorYellowIfBlonde,
         }"
       ></div>
     </div>
@@ -56,8 +55,28 @@ export default {
       });
     },
     showPopUpOnCharacterImage() {
-        alert(`Hey, my name is ${this.characterObject.name}!`);
-    }
+      alert(`Hey, my name is ${this.characterObject.name}!`);
+    },
+  },
+  computed: {
+    characterGender() {
+      return this.characterObject.gender === "female" ? "She" : "He";
+    },
+    isDateOfBirthKnown() {
+      return this.characterObject.dateOfBirth
+        ? this.characterObject.dateOfBirth
+        : "unknown";
+    },
+    isAncestryKnown() {
+      return this.characterObject.ancestry
+        ? this.characterObject.ancestry
+        : "unknown";
+    },
+    characterHairColorYellowIfBlonde() {
+      return this.characterObject.hairColour === "blonde"
+        ? "yellow"
+        : this.characterObject.hairColour;
+    },
   },
 };
 </script>
@@ -65,7 +84,7 @@ export default {
 <style lang="scss" scoped>
 @import "../assets/mixins/flexbox.scss";
 .character-inner-container {
-  @include flex(space-between, flex-start, column, normal);
+  @include flex(space-between, flex-start, column, 8px);
   height: 100%;
 }
 
@@ -90,7 +109,7 @@ h4 {
   top: -40px;
   border-radius: 50%;
   transform: translateX(-50%);
-  transition: all .5s ease-in-out;
+  transition: all 0.5s ease-in-out;
   z-index: 2;
   cursor: pointer;
 
@@ -99,7 +118,7 @@ h4 {
     box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
 
     img {
-        filter: grayscale(0);
+      filter: grayscale(0);
     }
   }
 
@@ -109,7 +128,7 @@ h4 {
     border-radius: 50%;
     object-fit: cover;
     filter: grayscale(1);
-    transition: all .5s ease-in-out;
+    transition: all 0.5s ease-in-out;
   }
 }
 </style>
