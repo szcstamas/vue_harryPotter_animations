@@ -119,4 +119,21 @@ main {
   transform: translateX(-50px);
   opacity: 0;
 }
+
+.slide-up-move,
+.slide-up-enter-active,
+.slide-up-leave-active
+{
+  transition: all .5s ease;
+}
+
+.slide-up-enter-from,
+.slide-up-leave-to {
+  transform: translateY(50px);
+  opacity: 0;
+}
+
+.slide-up-leave-active {
+  position: absolute;
+}
 </style>
