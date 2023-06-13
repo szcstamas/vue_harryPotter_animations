@@ -38,7 +38,7 @@ button {
   margin: 0.5em;
   border-radius: 5px;
   background: linear-gradient(to right, #16c0b0, #84cf6a);
-  font-size: 1em;
+  font-size: 1.5em;
   border: none;
   outline: none;
   cursor: pointer;
@@ -52,16 +52,5 @@ button {
   margin-top: 20px;
   border-radius: 2%;
   background-color: #e0e0e0;
-}
-
-.fade-enter-from,
-.fade-leave-to
-{
-  opacity: 0;
-}
-
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.5s ease;
 }
 </style>

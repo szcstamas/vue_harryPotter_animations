@@ -2,11 +2,12 @@
 import { RouterView } from "vue-router";
 </script>
 
-
 <template>
   <HeaderComponent />
   <main>
-    <RouterView />
+    <transition name="slide-fade" mode="out-in">
+      <RouterView />
+    </transition>
   </main>
 </template>
 
@@ -15,13 +16,13 @@ import HeaderComponent from "@/components/HeaderComponent.vue";
 
 export default {
   components: {
-    HeaderComponent
-  }
-}
+    HeaderComponent,
+  },
+};
 </script>
 
 <style lang="scss">
-@import './assets/variables/colors.scss';
+@import "./assets/variables/colors.scss";
 
 * {
   margin: 0;
@@ -30,7 +31,7 @@ export default {
 }
 
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 a {
@@ -90,5 +91,32 @@ main {
 .margin-bottom-2rem {
   margin-bottom: 2rem;
 }
+</style>
 
+// TRANSITIONS
+<style>
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 1s ease;
+}
+
+.slide-fade-enter-from {
+  transform: translateX(50px);
+  opacity: 0;
+}
+
+.slide-fade-enter-active,
+.slide-fade-leave-active {
+  transition: all .5s ease;
+}
+
+.slide-fade-leave-to {
+  transform: translateX(-50px);
+  opacity: 0;
+}
 </style>
