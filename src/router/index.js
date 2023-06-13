@@ -3,6 +3,8 @@ import HomeView from "../views/HomeView.vue";
 import PracticeView from "../views/PracticeView.vue";
 import HarryPotterView from "../views/HarryPotterView.vue";
 import HarryPotterDetail from "../components/HarryPotterDetail.vue";
+import VuexStoreView from "../views/VuexStoreView.vue";
+import SpellsView from "../views/SpellsView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -35,6 +37,16 @@ const router = createRouter({
       name: "harry-potter-details",
       props: true,
       component: HarryPotterDetail,
+    },
+    {
+      path: "/vuex-store",
+      name: "vuex-store",
+      component: VuexStoreView,
+    },
+    {
+      path: "/spells",
+      name: "spells",
+      component: SpellsView,
     },
   ],
 });
