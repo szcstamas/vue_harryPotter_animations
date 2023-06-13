@@ -7,6 +7,7 @@
         <RouterLink to="/practice">Practice</RouterLink>
         <RouterLink to="/harry-potter">Harry Potter</RouterLink>
         <RouterLink to="/spells">Spells</RouterLink>
+        <RouterLink to="/animations">Animating with Vue</RouterLink>
       </nav>
     </div>
   </header>

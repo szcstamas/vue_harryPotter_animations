@@ -5,6 +5,7 @@ import HarryPotterView from "../views/HarryPotterView.vue";
 import HarryPotterDetail from "../components/HarryPotterDetail.vue";
 import VuexStoreView from "../views/VuexStoreView.vue";
 import SpellsView from "../views/SpellsView.vue";
+import AnimationView from "../views/AnimationView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -47,6 +48,11 @@ const router = createRouter({
       path: "/spells",
       name: "spells",
       component: SpellsView,
+    },
+    {
+      path: "/animations",
+      name: "animations",
+      component: AnimationView,
     },
   ],
 });

@@ -12,9 +12,11 @@
     </div>
     <div class="spell-more-container">
       <div class="spell-more-container__line"></div>
-      <button @click='increaseSpellboxes' class="spell-more-container__plus">+</button>
+      <button @click="increaseSpellboxes" class="spell-more-container__plus">
+        +
+      </button>
       <div class="spell-more-container__line"></div>
-      <div class="spell-more-container__note">Show 3 more spells!</div> 
+      <div class="spell-more-container__note">Show 3 more spells!</div>
     </div>
   </section>
 </template>
@@ -27,6 +29,7 @@ export default {
     return {
       spells: [],
       spellBoxes: 3,
+      isOpen: false,
     };
   },
 
@@ -42,18 +45,20 @@ export default {
 
   methods: {
     increaseSpellboxes() {
-      return this.spellBoxes += 3
-    }
+      this.spellBoxes += 3;
+    },
+    toggleModal() {
+      this.isOpen = !this.isOpen;
+    },
   },
 
   computed: {
     slicedArrayOfShownSpells() {
-      return this.spells.slice(0, this.spellBoxes)
-    }
-  }
+      return this.spells.slice(0, this.spellBoxes);
+    },
+  },
 };
 </script>
-
 <style lang="scss" scoped>
 .spells-grid-container {
   display: grid;
@@ -105,7 +110,7 @@ export default {
 
     cursor: pointer;
 
-    transition: background .1s ease-in-out;
+    transition: background 0.1s ease-in-out;
 
     &:hover {
       background: #272727;
@@ -115,25 +120,28 @@ export default {
     &:hover ~ .spell-more-container__note {
       opacity: 1;
       transform: translate(-50%, 70%);
+      visibility: visible;
     }
   }
 
   .spell-more-container__note {
     opacity: 0;
+    visibility: hidden;
     pointer-events: none;
 
     position: absolute;
     left: 50%;
     top: 50%;
     transform: translate(-50%, 60%);
-    transition: all .1s ease-in-out;
+    transition: transform 0.1s ease-in-out, opacity 0.1s ease-in-out,
+      visibility 0.1s ease-in-out;
 
     width: clamp(100px, 25%, 200px);
     height: auto;
     padding: 20px;
     border-radius: 10px;
     background-color: #efefef;
-    box-shadow: 0px 10px 20px rgba(0, 0, 0, .075);
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.075);
 
     text-align: center;
   }
