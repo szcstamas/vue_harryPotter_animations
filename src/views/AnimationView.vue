@@ -175,7 +175,8 @@ export default {
 };
 </script>
 
-<style>
+// LOCAL STYLES
+<style scoped>
 .vue-animated-input-container {
   position: relative;
 }
@@ -236,10 +237,7 @@ ul li {
   font-size: 1.25rem;
   margin: 0.25rem;
 }
-</style>
 
-// LOCAL STYLES
-<style scoped>
 img {
   height: 2.5em;
   width: 2.5em;

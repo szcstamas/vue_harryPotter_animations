@@ -10,13 +10,32 @@
         <p>{{ spell.description }}</p>
       </div>
     </div>
-    <div class="spell-more-container">
+    <div
+      v-if="slicedArrayOfShownSpells.length != spells.length"
+      class="spell-more-container"
+    >
       <div class="spell-more-container__line"></div>
       <button @click="increaseSpellboxes" class="spell-more-container__plus">
         +
       </button>
       <div class="spell-more-container__line"></div>
-      <div class="spell-more-container__note">Show 3 more spells!</div>
+      <div class="spell-more-container__note">
+        Show {{ this.modifierNumberOfSpellBoxes }} more spells!
+      </div>
+    </div>
+
+    <div
+      v-if="slicedArrayOfShownSpells.length >= lengthOfSlicedArrayOfShownSpells"
+      class="spell-more-container"
+    >
+      <div class="spell-more-container__line"></div>
+      <button @click="decreaseSpellboxes" class="spell-more-container__plus">
+        -
+      </button>
+      <div class="spell-more-container__line"></div>
+      <div class="spell-more-container__note">
+        Show {{ this.modifierNumberOfSpellBoxes }} less spells!
+      </div>
     </div>
   </section>
 </template>
@@ -29,6 +48,7 @@ export default {
     return {
       spells: [],
       spellBoxes: 3,
+      modifierNumberOfSpellBoxes: 6,
       isOpen: false,
     };
   },
@@ -45,21 +65,28 @@ export default {
 
   methods: {
     increaseSpellboxes() {
-      this.spellBoxes += 3;
+      this.spellBoxes += this.modifierNumberOfSpellBoxes;
     },
-    toggleModal() {
-      this.isOpen = !this.isOpen;
-    },
+    decreaseSpellboxes() {
+      this.spellBoxes -= this.modifierNumberOfSpellBoxes;
+    }
   },
 
   computed: {
     slicedArrayOfShownSpells() {
       return this.spells.slice(0, this.spellBoxes);
     },
+    lengthOfSlicedArrayOfShownSpells() {
+      return this.spells.slice(0, this.modifierNumberOfSpellBoxes).length
+    }
   },
 };
 </script>
 <style lang="scss" scoped>
+section {
+  padding-bottom: 4rem;
+}
+
 .spells-grid-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
@@ -121,6 +148,7 @@ export default {
       opacity: 1;
       transform: translate(-50%, 70%);
       visibility: visible;
+      z-index: 1000;
     }
   }
 
